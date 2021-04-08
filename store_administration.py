@@ -2,7 +2,7 @@ from tkinter import *
 import os
 from PIL import ImageTk,Image
 
-global logo
+
 store_adm = Tk()
 store_adm.title('Frienvi Store administration')
 store_adm.geometry("500x500")
@@ -19,6 +19,10 @@ def secondhand():
     sh_screen = Toplevel(store_adm)
     sh_screen.title("Frienvi Καταστήματα με μεταχειρισμένα")
     sh_screen.geometry("500x500")
+    #showing logo to the new window
+    logo2 = Canvas(sh_screen, width = 190, height = 91)
+    img2 = ImageTk.PhotoImage(Image.open('frienvilogo.png'))
+    logo2.create_image(10,10,anchor=NW, image=img)
     #defining all the global attributes
     global name
     global location
@@ -65,7 +69,7 @@ def secondhand():
     submit=Button(sh_screen,text='Προσθήκη', height='1', width='10', bg='white', fg='grey',command=additem)
 
     #the screen will show
-    logo.grid(row=0,column=0)
+    logo2.grid(row=0,column=0)
     label1.grid(row=1,column=0)
     name.grid(row=1,column=1)
     menu.grid(row=2,column=0)
@@ -100,6 +104,10 @@ def restaurant():
     res_screen = Toplevel(store_adm)
     res_screen.title("Frienvi Χώροι εστίασης")
     res_screen.geometry("500x500")
+    #showing logo to the new window
+    logo2 = Canvas(res_screen, width = 190, height = 91)
+    img2 = ImageTk.PhotoImage(Image.open('frienvilogo.png'))
+    logo2.create_image(10,10,anchor=NW, image=img)
     global name
     global location
     global schedule
@@ -142,7 +150,7 @@ def restaurant():
     submit=Button(res_screen,text='Προσθήκη', height='1', width='10', bg='white', fg='grey',command=additem)
     
 
-    logo.grid(row=0,column=0)
+    logo2.grid(row=0,column=0)
     label1.grid(row=1,column=0)
     name.grid(row=1,column=1)
     menu.grid(row=2,column=0)
@@ -176,6 +184,10 @@ def grocery():
     gro_screen = Toplevel(store_adm)
     gro_screen.title("Frienvi Καταστήματα τροφίμων")
     gro_screen.geometry("500x500")
+    #showing logo to the new window
+    logo2 = Canvas(register_screen, width = 190, height = 91)
+    img2 = ImageTk.PhotoImage(Image.open('frienvilogo.png'))
+    logo2.create_image(10,10,anchor=NW, image=img)
     global name
     global location
     global schedule
@@ -217,7 +229,7 @@ def grocery():
         index= index + 1
     submit=Button(gro_screen,text='Προσθήκη', height='1', width='10', bg='white', fg='grey',command=additem)
 
-    logo.grid(row=0,column=0)
+    logo2.grid(row=0,column=0)
     label1.grid(row=1,column=0)
     name.grid(row=1,column=1)
     menu.grid(row=2,column=0)
