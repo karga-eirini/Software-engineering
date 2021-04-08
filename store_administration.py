@@ -1,4 +1,6 @@
 from tkinter import *
+import os
+from PIL import ImageTk,Image
 
 global logo
 store_adm = Tk()
@@ -6,7 +8,7 @@ store_adm.title('Frienvi Store administration')
 store_adm.geometry("500x500")
 #app logo
 logo= Canvas(store_adm, width = 190, height = 91)
-img = PhotoImage(file = 'C:\\Users\\Ειρήνη Αναστασία\\Desktop\\python\\n.png')
+img = ImageTk.PhotoImage(Image.open('frienvilogo.png'))
 logo.create_image(10,10,anchor=NW, image=img)
 logo.theimage = img
 
