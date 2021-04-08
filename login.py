@@ -3,7 +3,7 @@ import os
 from PIL import ImageTk,Image
 
 
-global logo
+
 main_screen = Tk()
 main_screen.title('Frienvi log in')
 main_screen.geometry("450x450")
@@ -27,6 +27,11 @@ def register():
     register_screen = Toplevel(main_screen)
     register_screen.title("Frienvi Register")
     register_screen.geometry("450x450")
+    
+    #showing logo to the new window
+    logo2 = Canvas(register_screen, width = 190, height = 91)
+    img2 = ImageTk.PhotoImage(Image.open('frienvilogo.png'))
+    logo2.create_image(10,10,anchor=NW, image=img)
 
     global username
     global password
@@ -42,7 +47,7 @@ def register():
     password_lable2 = Label(register_screen, text="Επαλήθευση Password")
     password_entry2 = Entry(register_screen, textvariable=password2, show='*')
    
-    logo.pack()
+    logo2.pack()
     Label(register_screen, text="Enter your acount details").pack(pady=(0,20))
     username_lable.pack()
     username_entry.pack()
