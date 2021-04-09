@@ -1,16 +1,19 @@
 from tkinter import *
-import os
 from PIL import ImageTk,Image
+from tkinter import ttk
+import tkinter as tk
+import os
+
 
 window = Tk()
 window.title('Frienvi Main Menu')
-window.geometry("700x700")
+window.geometry("500x500")
 window.configure(bg='lightblue')
 
 
 #for logo
-logo = Canvas(window, width = 285, height = 126)
-img = PhotoImage(file = 'C:\\Users\\mario\\Desktop\\Μαθήματα\\8ο εξάμηνο\\Τεχνολογία Λογισμικού\\εικόνες\\logo.png')
+logo = Canvas(window, width = 250, height = 250)
+img = ImageTk.PhotoImage(Image.open("frienvilogo.png"))
 logo.create_image(10,10,anchor=NW, image=img)
 logo.grid(row=0,column=0)
 
