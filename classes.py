@@ -43,8 +43,21 @@ class EntryRequest:
         self.tel_number=tel_number
         self.text=text
 
+class Location:
+    def __init__(self,adress,loc_id):
+        self.adress=adress
+        self.loc_id=loc_id
+
 class ExpensiveRate:
     def __init__(self,ratings,first_evaluation,store_id):
         self.ratings=ratings
         self.first_evaluation=first_evalutaton
         self.store_id=store_id
+
+class News:
+    deg __init__(self,name,store_id,text,title,news_id):
+    self.name=name
+    self.store_id=store_id
+    self.text=text
+    self.title=title
+    self.news_id=news_id
