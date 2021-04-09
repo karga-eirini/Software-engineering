@@ -69,7 +69,7 @@ user.pack()
 passwordtext.pack()
 password.pack()
 check.pack(pady=(20,0))
-Button(text='Log in',width=16, height=1).pack()
+Button(text='Log in',width=16, height=1,bg='black',fg='white').pack()
 Label(text="Dont't have any acounts?",font=('calibri', 8)).pack()
 Button(text="Sign up", height="1", width="5", command=register).pack()
 
