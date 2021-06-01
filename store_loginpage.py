@@ -2,8 +2,17 @@ from tkinter import *
 import os
 import tkinter as tk 
 from PIL import ImageTk,Image
+from tkinter import messagebox
+import sys
+
+def submit_application():
+    MsgBox=tk.messagebox.showinfo("Confirm","Η αίτηση σας καταχωρήθηκε.") 
+    if MsgBox == 'ok':
+        sys.exit()
 
 
+       
+       
 # main store log in page
 class Store_login(tk.Frame):
     def __init__(self, parent, controller):
@@ -136,7 +145,7 @@ class DocumentsList(tk.Frame):
         storedetails=Entry(self,textvariable=storedetails)
 
         #buttons
-        confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white')
+        confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white',command=submit_application)
         goback=tk.Button(self,text='Επιστροφή',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(EntryRequest))
 
         #the document list screen
