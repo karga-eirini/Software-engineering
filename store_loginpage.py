@@ -10,10 +10,10 @@ class Store_login(tk.Frame):
         tk.Frame.__init__(self, parent)
         
         #app logo
-        logo= Canvas(self, width = 190, height = 91)
-        img = ImageTk.PhotoImage(Image.open('frienvilogo.png'))
-        logo.create_image(10,10,anchor=NW, image=img)
-        logo.theimage=img
+        load = Image.open('frienvilogo.png')
+        render = ImageTk.PhotoImage(load)
+        logo = Label(self, image=render)
+        logo.image = render
 
         label_1=Label(self, text="Έχετε επιβεβαιώσει την εισαγωγή σας ως κατάστημα;",font=('ariel', 10))
 
@@ -43,9 +43,12 @@ class EntryRequest(tk.Frame):
         tk.Frame.__init__(self, parent)
         
         
-        logo2=Canvas(self, width = 190, height = 91)
-        img2=ImageTk.PhotoImage(Image.open('frienvilogo.png'))
-        logo2.create_image(10,10,anchor=NW, image=img2)
+        #app logo
+        load = Image.open('frienvilogo.png')
+        render = ImageTk.PhotoImage(load)
+        logo = Label(self, image=render)
+        logo.image = render
+
         global storelist
         global adeia
         global ecoinfo
@@ -73,7 +76,7 @@ class EntryRequest(tk.Frame):
         goback=tk.Button(self,text='Επιστροφή',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(Store_login))
 
         #the entry request screen
-        logo2.grid(row=0,column=0)
+        logo.grid(row=0,column=0)
         label_1.grid(row=1,column=0)
         label_2.grid(row=2,column=0)
         storelist.grid(row=2,column=1)
@@ -87,7 +90,7 @@ class EntryRequest(tk.Frame):
         goback.grid(row=6,column=2)
 
         #list of buttons
-        obj_list=[logo2,label_1,label_2,storelist,label_3,adeia,label_4,ecoinfo,label_5,storedetails,confirm,goback]
+        obj_list=[logo,label_1,label_2,storelist,label_3,adeia,label_4,ecoinfo,label_5,storedetails,confirm,goback]
         #loop thru the list and config
         row_num=0
         for button in obj_list:
@@ -104,9 +107,12 @@ class DocumentsList(tk.Frame):
         tk.Frame.__init__(self, parent)
         
 
-        logo3=Canvas(self, width = 190, height = 91)
-        img3=ImageTk.PhotoImage(Image.open('frienvilogo.png'))
-        logo3.create_image(10,10,anchor=NW, image=img3)
+        #app logo
+        load = Image.open('frienvilogo.png')
+        render = ImageTk.PhotoImage(load)
+        logo = Label(self, image=render)
+        logo.image = render
+
         global storelist
         global adeia
         global ecoinfo
@@ -134,7 +140,7 @@ class DocumentsList(tk.Frame):
         goback=tk.Button(self,text='Επιστροφή',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(EntryRequest))
 
         #the document list screen
-        logo3.grid(row=0,column=0)
+        logo.grid(row=0,column=0)
         label_1.grid(row=1,column=0)
         label_2.grid(row=2,column=0)
         storelist.grid(row=2,column=1)
@@ -148,7 +154,7 @@ class DocumentsList(tk.Frame):
         goback.grid(row=6,column=2)
 
         #list of buttons
-        obj_list=[logo3,label_1,label_2,storelist,label_3,adeia,label_4,ecoinfo,label_5,storedetails,confirm,goback]
+        obj_list=[logo,label_1,label_2,storelist,label_3,adeia,label_4,ecoinfo,label_5,storedetails,confirm,goback]
         #loop thru the list and config
         row_num=0
         for button in obj_list:
