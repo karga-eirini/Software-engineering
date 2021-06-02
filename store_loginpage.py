@@ -44,7 +44,8 @@ class Store_login(tk.Frame):
 
         Grid.columnconfigure(self,0,weight=1)
 
-       
+        
+
 #entry request page
 class EntryRequest(tk.Frame):
     def __init__(self, parent, controller):
@@ -58,13 +59,8 @@ class EntryRequest(tk.Frame):
         logo.image = render
 
         global storename
-        global details
-        global eco
-        global info
         storename=StringVar()
-        details=StringVar()
-        eco=StringVar()
-        info=StringVar()
+        
 
         #labels
         label_1=Label(self, text="Αίτηση εισαγωγής",font=('ariel', 20,'bold'))
@@ -75,9 +71,9 @@ class EntryRequest(tk.Frame):
 
         #entry boxes
         storename=Entry(self,textvariable=storename)
-        details=Entry(self,textvariable=details)
-        eco=Entry(self,textvariable=eco)
-        info=Entry(self,textvariable=info)
+        details=Text(self,width="20", height="2")
+        eco=Text(self,width="20", height="2")
+        info=Text(self,width="20", height="2")
 
         #buttons
         confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(DocumentsList))
@@ -121,14 +117,11 @@ class DocumentsList(tk.Frame):
         logo = Label(self, image=render)
         logo.image = render
 
-        global storelist
+        
         global adeia
         global ecoinfo
-        global storedetails
-        storelist=StringVar()
         adeia=StringVar()
         ecoinfo=StringVar()
-        storedetails=StringVar()
 
         #labels
         label_1=Label(self, text="Λίστα δικαιολογητικών",font=('ariel', 20,'bold'))
@@ -138,10 +131,10 @@ class DocumentsList(tk.Frame):
         label_5=Label(self, text="Πληροφορίες καταστήματος",font=('ariel', 10))
 
         #entry boxes
-        storelist=Entry(self,textvariable=storelist)
         adeia=Entry(self,textvariable=adeia)
         ecoinfo=Entry(self,textvariable=ecoinfo)
-        storedetails=Entry(self,textvariable=storedetails)
+        contactdetails=Text(self,width="20", height="2")
+        storedetails=Text(self,width="20", height="2")
 
         #buttons
         confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white',command=submit_application)
@@ -151,18 +144,18 @@ class DocumentsList(tk.Frame):
         logo.grid(row=0,column=0)
         label_1.grid(row=1,column=0)
         label_2.grid(row=2,column=0)
-        storelist.grid(row=2,column=1)
+        adeia.grid(row=2,column=1)
         label_3.grid(row=3,column=0)
-        adeia.grid(row=3,column=1,ipadx=30,ipady=30)
+        ecoinfo.grid(row=3,column=1,ipadx=30,ipady=30)
         label_4.grid(row=4,column=0)
-        ecoinfo.grid(row=4,column=1,ipadx=30,ipady=30)
+        contactdetails.grid(row=4,column=1,ipadx=30,ipady=30)
         label_5.grid(row=5,column=0)
         storedetails.grid(row=5,column=1,ipadx=30,ipady=30)
         confirm.grid(row=6,column=1)
         goback.grid(row=6,column=2)
 
         #list of buttons
-        obj_list=[logo,label_1,label_2,storelist,label_3,adeia,label_4,ecoinfo,label_5,storedetails,confirm,goback]
+        obj_list=[logo,label_1,label_2,adeia,label_3,ecoinfo,label_4,contactdetails,label_5,storedetails,confirm,goback]
         #loop thru the list and config
         row_num=0
         for button in obj_list:
@@ -182,7 +175,7 @@ class Application(tk.Tk):
         window.pack()
 
         window.grid_rowconfigure(0, minsize=500)
-        window.grid_columnconfigure(0, minsize=800)
+        window.grid_columnconfigure(0, minsize=900)
 
         self.frames = {}
         for F in (Store_login, EntryRequest,DocumentsList):
@@ -200,5 +193,5 @@ class Application(tk.Tk):
 
 
 app = Application()
-app.maxsize(800, 500)
+app.maxsize(900, 500)
 app.mainloop()
