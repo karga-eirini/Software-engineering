@@ -194,30 +194,6 @@ class Main_menu(tk.Frame):
         Grid.columnconfigure(self,0,weight=1)
 
 
-        class Application(tk.Tk):
-            def __init__(self, *args, **kwargs):
-                tk.Tk.__init__(self, *args, **kwargs)
-
-                # creating a window
-                window = tk.Frame(self)
-                window.pack()
-
-                window.grid_rowconfigure(0, minsize=500)
-                window.grid_columnconfigure(0, minsize=800)
-
-                self.frames = {}
-                for F in (Register_menu, Create_a_profile,Info_view,Main_menu):
-                    frame = F(window, self)
-                    self.frames[F] = frame
-                    frame.grid(row=0, column=0, sticky="nsew")
-
-                self.show_frame(Register_menu)
-
-            def show_frame(self, page):
-                frame = self.frames[page]
-                frame.tkraise()
-                self.title("Frienvi")
-        
 
 
 class Application(tk.Tk):
