@@ -1,18 +1,25 @@
-from tkinter import *
-import os
 import tkinter as tk 
 from PIL import ImageTk,Image
 from tkinter import messagebox
 from tkcalendar import*
+from tkinter import filedialog as fd
+
+
+#to open files 
+def callback():
+    name= fd.askopenfilename() 
+    print(name)
+
+errmsg = 'Error!'
+
 
 #confirmation messagebox for updating an article
 def submit_article():
     MsgBox=tk.messagebox.askquestion("Confirm","Είστε σίγουροι;")
     if MsgBox == 'no':
-           exit
+         exit
     else:
-        tk.messagebox.showinfo('Return','Επιτυχής δημοσίευση')
-        
+        tk.messagebox.showinfo('Return','Επιτυχής δημοσίευση')       
 
 # admin log in page 
 class admin_login(tk.Frame):
@@ -20,11 +27,14 @@ class admin_login(tk.Frame):
         tk.Frame.__init__(self, parent)
         
         #app logo
-        logo= Canvas(self, width = 190, height = 91)
-        img = ImageTk.PhotoImage(Image.open('frienvilogo.png'))
-        logo.create_image(10,10,anchor=NW, image=img)
-        logo.theimage=img
+        load = Image.open('frienvilogo.png')
+        render = ImageTk.PhotoImage(load)
+        logo = Label(self, image=render)
+        logo.image = render
 
+        
+
+        #admin choices
         label_1=Label(self, text="Ενημέρωση καταστημάτων(Προσθήκη ή Κατάργηση)",font=('ariel', 14,'bold'))
         label_2=Label(self, text="Ενημέρωση Σελίδας νέων",font=('ariel', 14,'bold'))
         label_3=Label(self, text="Διαφήμιση μέσω admob",font=('ariel', 14,'bold'))
@@ -45,7 +55,7 @@ class admin_login(tk.Frame):
         label_4.grid(row=7,column=0)
         button_4.grid(row=8,column=0)
 
-        #list of buttons
+        
         obj_list=[logo,label_1,button_1,label_2,button_2,label_3,button_3,label_4,button_4]
         #loop thru the list and config
         row_num=0
@@ -62,10 +72,11 @@ class Newsfeed(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         
-        
-        logo2=Canvas(self, width = 190, height = 91)
-        img2=ImageTk.PhotoImage(Image.open('frienvilogo.png'))
-        logo2.create_image(10,10,anchor=NW, image=img2)
+        #app logo
+        load = Image.open('frienvilogo.png')
+        render = ImageTk.PhotoImage(load)
+        logo = Label(self, image=render)
+        logo.image = render
 
         global article
         article=StringVar()
@@ -84,13 +95,12 @@ class Newsfeed(tk.Frame):
         label_1=Label(self, text="Επίλεξε το είδος του άρθρου:",font=('ariel', 20,'bold'))
         label_2=Label(self, text="Προσθήκη άρθρου:",font=('ariel', 20,'bold'))
 
-        article=Entry(self,textvariable=article)
-
+        article=tk.Button(self,text='Click to Open File',command=callback)
         confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=2,bg='black',fg='white',command=submit_article)
         goback=tk.Button(self,text='Επιστροφή',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(admin_login))
         schedule=tk.Button(self,text='Προγραμματισμός',width=20, height=2,bg='black',fg='white',command=lambda: controller.show_frame(Schedule_update))
         
-        logo2.grid(row=0,column=0)
+        logo.grid(row=0,column=0)
         label_1.grid(row=1,column=0)
         R1.grid(row=2,column=0)
         R2.grid(row=3,column=0)
@@ -101,8 +111,8 @@ class Newsfeed(tk.Frame):
         confirm.grid(row=6,column=1)
         schedule.grid(row=7,column=1)
 
-        #list of buttons
-        obj_list=[logo2,label_1,R1,R2,R3,label_2,article,goback,confirm,schedule]
+        
+        obj_list=[logo,label_1,R1,R2,R3,label_2,article,goback,confirm,schedule]
         #loop thru the list and config
         row_num=0
         for button in obj_list:
@@ -119,9 +129,10 @@ class Schedule_update(tk.Frame):
         tk.Frame.__init__(self, parent)
         
 
-        logo3=Canvas(self, width = 190, height = 91)
-        img3=ImageTk.PhotoImage(Image.open('frienvilogo.png'))
-        logo3.create_image(10,10,anchor=NW, image=img3)
+        load = Image.open('frienvilogo.png')
+        render = ImageTk.PhotoImage(load)
+        logo = Label(self, image=render)
+        logo.image = render
 
         label_1=Label(self, text="Επίλεξε ημερομηνία δημοσίευσης",font=('ariel', 20,'bold'))
 
@@ -144,15 +155,15 @@ class Schedule_update(tk.Frame):
         goback=tk.Button(self,text='Επιστροφή',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(Newsfeed))
         
 
-        #the document list screen
-        logo3.grid(row=0,column=0)
+      
+        logo.grid(row=0,column=0)
         label_1.grid(row=1,column=0)
         cal.grid(row=2,column=0)
         goback.grid(row=3,column=0)
         confirm.grid(row=3,column=1)
 
         #list of buttons
-        obj_list=[logo3,label_1,cal,goback,confirm]
+        obj_list=[logo,label_1,cal,goback,confirm]
         #loop thru the list and config
         row_num=0
         for button in obj_list:
