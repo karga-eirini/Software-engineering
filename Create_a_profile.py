@@ -1,6 +1,7 @@
 from tkinter import *
 import os
-import tkinter as tk 
+import tkinter as tk
+from typing import Mapping 
 from PIL import ImageTk,Image
 
 
@@ -117,14 +118,6 @@ class Info_view(tk.Frame):
         logo = Label(self, image=render)
         logo.image = render
 
-        #global storelist
-        #global adeia
-        #global ecoinfo
-        #global storedetails
-        #storelist=StringVar()
-        #adeia=StringVar()
-        #ecoinfo=StringVar()
-        #storedetails=StringVar()
 
         #labels
         label_1=Label(self, text="Τα στοιχεία σας ειναι τα παρακάτω",font=('ariel', 15,'bold'))
@@ -133,29 +126,20 @@ class Info_view(tk.Frame):
         label_4=Label(self, text="email",font=('ariel', 10))
         label_5=Label(self, text="Κωδικός",font=('ariel', 10))
 
-        #entry boxes
-        #storelist=Entry(self,textvariable=storelist)
-        #adeia=Entry(self,textvariable=adeia)
-        #ecoinfo=Entry(self,textvariable=ecoinfo)
-        #storedetails=Entry(self,textvariable=storedetails)
 
         #buttons
-        confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white')
+        confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(Main_menu))
         goback=tk.Button(self,text='Επιστροφή',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(Create_a_profile))
 
         #the document list screen
         logo.grid(row=0,column=0)
         label_1.grid(row=1,column=0)
         label_2.grid(row=2,column=0)
-        #storelist.grid(row=2,column=1)
         label_3.grid(row=3,column=0)
-        #adeia.grid(row=3,column=1,ipadx=30,ipady=30)
         label_4.grid(row=4,column=0)
-        #ecoinfo.grid(row=4,column=1,ipadx=30,ipady=30)
         label_5.grid(row=5,column=0)
-        #storedetails.grid(row=5,column=1,ipadx=30,ipady=30)
-        confirm.grid(row=6,column=0)
-        goback.grid(row=6,column=1)
+        confirm.grid(row=6,column=1)
+        goback.grid(row=6,column=2)
 
         #list of buttons
         obj_list=[logo,label_1,label_2,label_3,label_4,label_5,confirm,goback]
@@ -167,6 +151,73 @@ class Info_view(tk.Frame):
 
         Grid.columnconfigure(self,0,weight=1)
 
+
+#View Main menu
+class Main_menu(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        
+
+        #app logo
+        load = Image.open('frienvilogo.png')
+        render = ImageTk.PhotoImage(load)
+        logo = Label(self, image=render)
+        logo.image = render
+
+        logo.grid(row=0,column=0)
+
+        #buttons
+        search = Entry(self,width=30,borderwidth=1)
+        search.insert(0, "Αναζήτηση")
+        search.grid(row=1,column=0)
+
+        news=Button(self, text="Ειδήσεις",height=3,width=30)
+        news.grid(row=2,column=0)
+
+        secondh=Button(self, text="Μεταχειρισμένα",font=('bold'),heigh=3,width=30)
+        secondh.grid(row=3,column=0)
+
+        estiash=Button(self, text="Χώροι εστίασης",font=('bold'),heigh=3,width=30)
+        estiash.grid(row=4,column=0)
+
+        food=Button(self, text="Καταστήματα τροφίμων",font=('bold'),heigh=3,width=30)
+        food.grid(row=5,column=0)
+
+        #list of buttons
+        obj_list=[logo,search,news,secondh,estiash,food]
+        #loop thru the list and config
+        row_num=0
+        for button in obj_list:
+            Grid.rowconfigure(self,row_num,weight=1)
+            row_num+=1
+
+        Grid.columnconfigure(self,0,weight=1)
+
+
+        class Application(tk.Tk):
+            def __init__(self, *args, **kwargs):
+                tk.Tk.__init__(self, *args, **kwargs)
+
+                # creating a window
+                window = tk.Frame(self)
+                window.pack()
+
+                window.grid_rowconfigure(0, minsize=500)
+                window.grid_columnconfigure(0, minsize=800)
+
+                self.frames = {}
+                for F in (Register_menu, Create_a_profile,Info_view,Main_menu):
+                    frame = F(window, self)
+                    self.frames[F] = frame
+                    frame.grid(row=0, column=0, sticky="nsew")
+
+                self.show_frame(Register_menu)
+
+            def show_frame(self, page):
+                frame = self.frames[page]
+                frame.tkraise()
+                self.title("Frienvi")
+        
 
 
 class Application(tk.Tk):
@@ -181,7 +232,7 @@ class Application(tk.Tk):
         window.grid_columnconfigure(0, minsize=800)
 
         self.frames = {}
-        for F in (Register_menu, Create_a_profile,Info_view):
+        for F in (Register_menu, Create_a_profile,Info_view,Main_menu):
             frame = F(window, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -192,7 +243,7 @@ class Application(tk.Tk):
         frame = self.frames[page]
         frame.tkraise()
         self.title("Frienvi")
-        
+
 
 
 app = Application()
