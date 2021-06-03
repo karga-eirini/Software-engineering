@@ -1,4 +1,3 @@
-
 from tkinter import *
 from tkinter import messagebox
 import os
@@ -24,6 +23,7 @@ def submit() :
     conn = sqlite3.connect("test.db") 
     cursor = conn.cursor() 
 
+
     #Insert Into Table
     cursor.execute("INSERT INTO Store VALUES (:store_name, :store_location, :store_hours, :store_products, :store_category )",
         {
@@ -39,9 +39,8 @@ def submit() :
 
 
 
-
+    conn.commit()
     cursor.close()
-
 
     #delete για να μπαίνουν  νέα στοιχεία κάθε φορά 
     store_name.delete(0,END)
@@ -50,10 +49,6 @@ def submit() :
     store_products.delete(0,END)
     store_category.delete(0,END)
 
-   
-
-
-    
 
 
 
@@ -100,14 +95,15 @@ store_hours_label.grid(row=3, column=0)
 store_category_label= Label(root,text='Category')
 store_category_label.grid(row=4, column=0)
 
-#lista me oles ta katasthmata  where category=metaxeirismena
-def list_of_metaxeirismena():
+#lista me ola osa einai sthn bash na print
+def query():
 
     conn = sqlite3.connect("test.db") 
     cursor = conn.cursor() 
+    #query the database 
     cursor.execute("SELECT * , oid FROM Store")
-    cursor.fetchall()
-    print()
+    records=cursor.fetchall()
+    print(records)
     #print_records = ''
     #for records in records[0] :
        # print_records += str (records)+ "\n"
@@ -123,7 +119,7 @@ SubmitButton.grid(row=6,column=0,columnspan=2,pady=10,padx=10,ipadx=100)
 
 #Create Button Query
 
-koumpi= Button(root,text='MΕΤΑΧΕΙΡΙΣΜΕΝΑ:',command=list_of_metaxeirismena )
+koumpi= Button(root,text='MΕΤΑΧΕΙΡΙΣΜΕΝΑ:',command=query )
 koumpi.grid(row=8, column=0, columnspan=2,padx=2,pady=2,ipadx=138)
 
 
