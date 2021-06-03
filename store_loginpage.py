@@ -4,6 +4,14 @@ import tkinter as tk
 from PIL import ImageTk,Image
 from tkinter import messagebox
 import sys
+from tkinter import filedialog as fd
+
+#to open files 
+def callback():
+    name= fd.askopenfilename() 
+    print(name)
+
+errmsg = 'Error!'
 
 def submit_application():
     MsgBox=tk.messagebox.showinfo("Confirm","Η αίτηση σας καταχωρήθηκε.") 
@@ -118,10 +126,6 @@ class DocumentsList(tk.Frame):
         logo.image = render
 
         
-        global adeia
-        global ecoinfo
-        adeia=StringVar()
-        ecoinfo=StringVar()
 
         #labels
         label_1=Label(self, text="Λίστα δικαιολογητικών",font=('ariel', 20,'bold'))
@@ -131,12 +135,12 @@ class DocumentsList(tk.Frame):
         label_5=Label(self, text="Πληροφορίες καταστήματος",font=('ariel', 10))
 
         #entry boxes
-        adeia=Entry(self,textvariable=adeia)
-        ecoinfo=Entry(self,textvariable=ecoinfo)
         contactdetails=Text(self,width="20", height="2")
         storedetails=Text(self,width="20", height="2")
 
         #buttons
+        adeia=tk.Button(self,text='Click to Open File',command=callback)
+        ecoinfo=tk.Button(self,text='Click to Open File',command=callback)
         confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white',command=submit_application)
         goback=tk.Button(self,text='Επιστροφή',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(EntryRequest))
 
