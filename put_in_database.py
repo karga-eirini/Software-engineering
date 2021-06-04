@@ -52,31 +52,6 @@ def submit():
     #close connection
     conn.close()
 
-#Delete empty/false rows
-#def delete_usr():
-    #Connect to the database
- #   conn=sqlite3.connect('users_book.db')
-    #Create Cursor
-  #  c=conn.cursor()
-
-   # c.execute("DELETE from users WHERE username=' ' OR password=' ' OR email=' ' ")
-    #records = c.fetchone()
-    #print(records)
-
-    #Loop Thru Results
-    #print_records=''
-    #for record in records:
-     #   print_records += str(record) +"\n"
-
-# query_label2 = Label(root, text= print_records)
-# query_label2.grid(row=9,column=1,rowspan=2)
-
-# commit changes
-# conn.commit()
-
-# close connection
-# conn.close()
-
 
 #create Query function
 def query():
