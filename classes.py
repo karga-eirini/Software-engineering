@@ -108,13 +108,18 @@ class StoreExperience:
         self.StoreExperience=StoreExperience
 
 class EntryRequest:
-    def __init__(self,name,adress,phone_number,details,questions,validation_documents):
+    def __init__(self,name,adress,phone_number,validation_documents):
         self.name=name
         self.adress=adress
         self.phone_number=phone_number
-        self.detail=details
-        self.questions=questions
         self.validation_documents=validation_documents
+
+class EntryQuestions:
+    def __init__(self,storename,details,eco,info):
+        self.storename=storename
+        self.details=details
+        self.eco=eco
+        self.info=info
 
 class Location:
     def __init__(self,adress,cityid,coordinations,postcode):
