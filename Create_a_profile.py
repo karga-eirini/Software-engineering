@@ -1,9 +1,18 @@
 from tkinter import *
 import os
-import tkinter as tk
-from typing import Mapping 
+import tkinter as tk 
 from PIL import ImageTk,Image
+from tkinter import messagebox
+import sys
+from tkinter import filedialog as fd
 
+
+def save_entries():
+    name = nm.get()
+    surname = surnm.get()
+    email = eml.get()
+    password = passwrd.get()
+    conf_password = conf_passwrd.get()
 
 #Register menu
 class Register_menu(tk.Frame):
@@ -68,11 +77,20 @@ class Create_a_profile(tk.Frame):
         label_6=Label(self, text="Επιβεβαίωση κωδικού",font=('ariel',10))
 
         #entry boxes
-        name=Entry(self,textvariable=name)
-        surname=Entry(self,textvariable=surname)
-        email=Entry(self,textvariable=email)
-        password=Entry(self,textvariable=password)
-        conf_password=Entry(self,textvariable=conf_password)
+        global nm
+        global surnm
+        global eml
+        global passwrd
+        global conf_passwrd
+        nm=Entry(self)
+        surnm=Entry(self,textvariable=surname)
+        eml=Entry(self,textvariable=email)
+        passwrd=Entry(self,textvariable=password)
+        conf_passwrd=Entry(self,textvariable=conf_password)
+        
+        
+        #save your information
+        save = Button(self, text="Αποθήκευση",command=save_entries)
 
         #buttons
         confirm=tk.Button(self,text='Επιβεβαίωση',width=20, height=1,bg='black',fg='white',command=lambda: controller.show_frame(Info_view))
@@ -82,20 +100,21 @@ class Create_a_profile(tk.Frame):
         logo.grid(row=0,column=0)
         label_1.grid(row=1,column=0)
         label_2.grid(row=2,column=0)
-        name.grid(row=2,column=1,ipadx=30)
+        nm.grid(row=2,column=1,ipadx=30)
         label_3.grid(row=3,column=0)
-        surname.grid(row=3,column=1,ipadx=30)
+        surnm.grid(row=3,column=1,ipadx=30)
         label_4.grid(row=4,column=0)
-        email.grid(row=4,column=1,ipadx=30)
+        eml.grid(row=4,column=1,ipadx=30)
         label_5.grid(row=5,column=0)
-        password.grid(row=5,column=1,ipadx=30)
+        passwrd.grid(row=5,column=1,ipadx=30)
         label_6.grid(row=6,column=0)
-        conf_password.grid(row=6,column=1,ipadx=30)
+        conf_passwrd.grid(row=6,column=1,ipadx=30)
         confirm.grid(row=7,column=1)
         goback.grid(row=7,column=2)
+        save.grid(row=7,column=0)
 
         #list of buttons
-        obj_list=[logo,label_1,label_2,name,label_3,surname,label_4,email,label_5,password,label_6,conf_password,confirm,goback]
+        obj_list=[logo,label_1,label_2,nm,label_3,surnm,label_4,eml,label_5,passwrd,label_6,conf_passwrd,confirm,goback,save]
         #loop thru the list and config
         row_num=0
         for button in obj_list:
@@ -118,6 +137,7 @@ class Info_view(tk.Frame):
         logo = Label(self, image=render)
         logo.image = render
 
+        
 
         #labels
         label_1=Label(self, text="Τα στοιχεία σας ειναι τα παρακάτω",font=('ariel', 15,'bold'))
